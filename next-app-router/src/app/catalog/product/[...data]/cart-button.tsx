@@ -1,16 +1,20 @@
 'use client'
 
-import { useState } from "react"
+import { ReactNode, useState } from "react"
+import { TestClient } from "./test-client-comp"
 
-export default async function AddToCartButton() {
+export default async function AddToCartButton({children}: {children:ReactNode}) {
     const [count, setCount] = useState(0)
 
     function addToCart() {
-        // setCount((state) => state + 1)
-        setCount(count + 1)
+        setCount((state) => state + 1)
     }
 
     return (
-        <button onClick={addToCart}>Add ao Carrinho ({count})</button>
+        <div>
+            <button onClick={addToCart}>Add ao Carrinho ({count})</button>
+            <TestClient />
+            {children}
+        </div>
     )
 }

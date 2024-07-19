@@ -1,6 +1,5 @@
-// 'use client' -> Run Client Component
-
 import AddToCartButton from "./cart-button"
+import { TestServer } from "./test-server-comp"
 
 type ProductProps = {
     params: {
@@ -10,7 +9,6 @@ type ProductProps = {
 
 export default function Product({params}:ProductProps) {
     const [productId, size, color] = params.data
-    console.log(params)
 
     return (
       <div>
@@ -18,7 +16,9 @@ export default function Product({params}:ProductProps) {
         <p>Size: {size}</p>
         <p>Color: {color}</p>
 
-        <AddToCartButton />
+        <AddToCartButton>
+          <TestServer />
+        </AddToCartButton>
       </div>
     );  
 }
