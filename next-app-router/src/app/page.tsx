@@ -1,8 +1,20 @@
-export default async function Home() {
-  await new Promise((resolve) => setTimeout(resolve, 2000))  // renderizar componente após 2s
+import { Suspense } from 'react'
+import { GitHubProfile } from "@/components/github-profile";
+import { LongWaitComponent } from "@/components/long-wait-component";
 
-  const response = await fetch('https://api.github.com/users/VFGarciaDev')
-  const user = await response.json()
+export default function Home() {
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur repellendus nobis nemo incidunt soluta, laborum velit. Neque amet perspiciatis facere quibusdam asperiores. Nam repellendus nobis consequatur, omnis et vero ut?</p>
 
-  return <pre>{JSON.stringify(user, null, 2)}</pre>
+
+      <Suspense fallback={<p>Carregando LongWaitComponent</p>}>
+        <LongWaitComponent />
+      </Suspense>
+      <Suspense fallback={<p>Carregando GithubProfileComponent</p>}>
+        <GitHubProfile />
+      </Suspense>
+    </div>
+  )
 }
